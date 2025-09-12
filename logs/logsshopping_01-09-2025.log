@@ -1,0 +1,12 @@
+[2025-09-01 23:42:09] [INFO ] pages.PageDaccueil -L'ur saisie est :https://shop-in.ovh/
+[2025-09-01 23:42:12] [INFO ] pages.BasePages -lelement est visible 
+[2025-09-01 23:42:13] [INFO ] pages.ManageCookies -cookies accceptees
+[2025-09-01 23:42:13] [INFO ] pages.BasePages -lelement est visible 
+[2025-09-01 23:42:16] [INFO ] pages.BasePages -cliquer sur lelement[[ChromeDriver: chrome on mac (6280efa5339d793a0220dbeb983f218a)] -> xpath: //a[@aria-label='Login']//*[name()='svg']]
+[2025-09-01 23:42:16] [INFO ] pages.LoginPage -Bouton clickable
+[2025-09-01 23:51:46] [INFO ] pages.PageDaccueil -L'ur saisie est :https://shop-in.ovh/
+[2025-09-01 23:51:49] [INFO ] pages.BasePages -lelement est visible 
+[2025-09-01 23:51:50] [INFO ] pages.ManageCookies -cookies accceptees
+[2025-09-01 23:51:50] [INFO ] pages.BasePages -lelement est visible 
+[2025-09-01 23:51:53] [INFO ] pages.BasePages -cliquer sur lelement[[ChromeDriver: chrome on mac (99cc0e72997c36262a0932b9c4da3db3)] -> xpath: //a[@aria-label='Login']//*[name()='svg']]
+[2025-09-01 23:51:53] [INFO ] pages.LoginPage -Bouton clickable

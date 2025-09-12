@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<!-- console -->
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%-5level] %c -%msg%n"/>
+		</Console>
+		<!-- Fichier de log -->
+		<RollingFile name="logsshopping" fileName="logs/logsshopping.log" filePattern="logs/logsshopping_%d{dd-MM-yyyy}.log" append="true">
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %c -%msg%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!-- Racine : tout passe en DEBUG vers le fichier et la console -->
+		<Root level="debug">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="logsshopping"/>
+		</Root>
+		<!--filtrer les logs par package - org.appache.http-->>
+		<Logger name="org.apache.http'" level="error" additivity="false"/>
+		<!--filtrer les logs par package - io.github.bonigarcia-->>
+		<Logger name="io.github.bonigarcia" level="error" additivity="false"/>
+	</Loggers>
+</Configuration>
