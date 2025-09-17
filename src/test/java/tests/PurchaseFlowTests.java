@@ -6,8 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,7 +46,6 @@ public class PurchaseFlowTests {
             MenuBoutique mb = new MenuBoutique();
             CheckoutPage cp = new CheckoutPage();
             
-
             // Récupération des valeurs depuis le fichier de config
             String username = ConfigReader.getProperty("username");
             String password = ConfigReader.getProperty("password");
@@ -60,7 +61,7 @@ public class PurchaseFlowTests {
             Map<org.openqa.selenium.By, String> champs = new LinkedHashMap<>();
             champs.put(cp.inputFirstName, firstName);
             champs.put(cp.inputLastName, lastName);
-            champs.put(cp.inputStreerAddress, streetAddress);
+            champs.put(cp.inputStreetAddress, streetAddress);
             champs.put(cp.inputPostcode, postcode);
             champs.put(cp.inputTown, town);
             champs.put(cp.inputPhone, phone);
@@ -106,7 +107,7 @@ public class PurchaseFlowTests {
             ExtentReportListner.test.info("Panier vérifié");
 
             // Cliquez sur le bouton Proceed to Checkout
-            cp.ProceedtoCheckout();
+            cp.proceedToCheckout();
             System.out.println("Click sur 'proceed to checkout' réussi");
             ExtentReportListner.test.info("Click sur 'proceed to checkout' réussi");
 
@@ -116,23 +117,34 @@ public class PurchaseFlowTests {
             System.out.println("Page de paiement chargée");
 
             // Remplissage des champs
-            cp.saisiDesChamprsRequis(champs);
+            cp.saisiDesChampsRequis(champs);
             System.out.println("Champs de paiement remplis");
             ExtentReportListner.test.pass("Champs de paiement remplis");
             
+            //ASSERTIONS CRITIQUES//
             
+            Assertions.assertTrue(cp.isProductInCart("Air Jordan 1 Low"),
+            	"le produit 'Air Jordan 1 Low' n'a pas été trouvé dans le panier");
+            	
+            Assertions.assertTrue(cp.isAcceptTermsChecked(),	
+            "La case 'terms' n'est pas coché");
+            
+          Assertions.assertTrue(cp.isPlaceOrderButtonDiplayed(),
+        		  "Le bouton 'palceOrder' n'est pas affcihé");
             
             Thread.sleep(5000);
             
-
+           
         } catch (Exception e) {
             System.out.println("Erreur lors du parcours : " + e.getMessage());
             ExtentReportListner.test.fail("Erreur lors du parcours : " + e.getMessage());
             e.printStackTrace();
-            
            
         }
-    }
+        	
+        }
+    
+    
 
     @AfterAll
     public static void tearDown() {
